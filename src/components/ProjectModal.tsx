@@ -26,7 +26,7 @@ export default function ProjectModal({ project, onClose }: Props) {
 
   return (
     <motion.div
-      className="fixed inset-0 z-[70] flex items-center justify-center p-4"
+      className="fixed inset-0 z-[70] flex items-end md:items-center justify-center md:p-4"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -40,116 +40,113 @@ export default function ProjectModal({ project, onClose }: Props) {
 
       {/* Modal panel */}
       <motion.div
-        className="relative z-10 w-full max-w-5xl bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-2xl"
-        initial={{ scale: 0.95 }}
-        animate={{ scale: 1 }}
-        exit={{ scale: 0.95 }}
-        transition={{ duration: 0.2 }}
+        className="relative z-10 w-full md:max-w-5xl bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-t-2xl md:rounded-2xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col md:grid md:grid-cols-[1.4fr_1fr]"
+        initial={{ y: '100%', opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: '100%', opacity: 0 }}
+        transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+        style={{ WebkitOverflowScrolling: 'touch' }}
       >
-        <div className="grid grid-cols-[1.4fr_1fr]">
-
-          {/* Left: image gallery */}
-          <div className="bg-gray-100 dark:bg-zinc-950 p-5 flex flex-col gap-3 border-r border-gray-200 dark:border-zinc-800 min-h-[400px]">
-            <div className="flex-1 rounded-xl overflow-hidden bg-gray-200 dark:bg-zinc-800 flex items-center justify-center">
-              {images.length > 0 ? (
-                <img
-                  src={images[activeIndex]}
-                  alt={`${project.name} screenshot ${activeIndex + 1}`}
-                  className="w-full h-full object-contain"
-                />
-              ) : (
-                <span className="text-gray-400 dark:text-zinc-600 text-sm font-mono">
-                  No images yet
-                </span>
-              )}
+        {/* Left / top: image gallery */}
+        <div className="bg-gray-100 dark:bg-zinc-950 p-4 md:p-5 flex flex-col gap-3 md:border-r border-b md:border-b-0 border-gray-200 dark:border-zinc-800 flex-shrink-0">
+          <div className="h-52 md:h-auto md:flex-1 rounded-xl overflow-hidden bg-gray-200 dark:bg-zinc-800 flex items-center justify-center">
+            {images.length > 0 ? (
+              <img
+                src={images[activeIndex]}
+                alt={`${project.name} screenshot ${activeIndex + 1}`}
+                className="w-full h-full object-contain"
+              />
+            ) : (
+              <span className="text-gray-400 dark:text-zinc-600 text-sm font-mono">
+                No images yet
+              </span>
+            )}
+          </div>
+          {images.length > 1 && (
+            <div className="flex gap-2 overflow-x-auto pb-1">
+              {images.map((src, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveIndex(i)}
+                  className={`flex-shrink-0 w-14 h-10 md:w-16 md:h-12 rounded-lg overflow-hidden border-2 transition-all ${
+                    i === activeIndex
+                      ? 'border-brand opacity-100'
+                      : 'border-transparent opacity-50 hover:opacity-75'
+                  }`}
+                >
+                  <img
+                    src={src}
+                    alt={`Thumbnail ${i + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+              ))}
             </div>
-            {images.length > 1 && (
-              <div className="flex gap-2 overflow-x-auto pb-1">
-                {images.map((src, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setActiveIndex(i)}
-                    className={`flex-shrink-0 w-16 h-12 rounded-lg overflow-hidden border-2 transition-all ${
-                      i === activeIndex
-                        ? 'border-brand opacity-100'
-                        : 'border-transparent opacity-50 hover:opacity-75'
-                    }`}
+          )}
+        </div>
+
+        {/* Right / bottom: details */}
+        <div className="p-5 md:p-6 flex flex-col gap-4 md:gap-5 overflow-y-auto">
+          <div className="flex justify-between items-start gap-3">
+            <div>
+              <h2 className="text-gray-900 dark:text-white font-bold text-xl leading-tight">
+                {project.name}
+              </h2>
+              <span className="font-mono text-xs text-brand uppercase tracking-wider">
+                {project.language}
+              </span>
+            </div>
+            <button
+              onClick={onClose}
+              className="text-gray-400 dark:text-zinc-600 hover:text-gray-900 dark:hover:text-white transition-colors p-1 flex-shrink-0"
+              aria-label="Close"
+            >
+              <X size={18} />
+            </button>
+          </div>
+
+          <p className="text-gray-600 dark:text-zinc-400 text-sm leading-relaxed">
+            {project.description}
+          </p>
+
+          {project.tech && project.tech.length > 0 && (
+            <div>
+              <p className="font-mono text-xs text-gray-400 dark:text-zinc-600 uppercase tracking-wider mb-2">
+                Tech stack
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {project.tech.map((tag) => (
+                  <span
+                    key={tag}
+                    className="bg-gray-100 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded px-2 py-1 font-mono text-xs text-gray-700 dark:text-zinc-300"
                   >
-                    <img
-                      src={src}
-                      alt={`Thumbnail ${i + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
+                    {tag}
+                  </span>
                 ))}
               </div>
-            )}
-          </div>
-
-          {/* Right: details */}
-          <div className="p-6 flex flex-col gap-5 overflow-y-auto">
-            <div className="flex justify-between items-start gap-3">
-              <div>
-                <h2 className="text-gray-900 dark:text-white font-bold text-xl leading-tight">
-                  {project.name}
-                </h2>
-                <span className="font-mono text-xs text-brand uppercase tracking-wider">
-                  {project.language}
-                </span>
-              </div>
-              <button
-                onClick={onClose}
-                className="text-gray-400 dark:text-zinc-600 hover:text-gray-900 dark:hover:text-white transition-colors p-1 flex-shrink-0"
-                aria-label="Close"
-              >
-                <X size={18} />
-              </button>
             </div>
+          )}
 
-            <p className="text-gray-600 dark:text-zinc-400 text-sm leading-relaxed flex-1">
-              {project.description}
-            </p>
-
-            {project.tech && project.tech.length > 0 && (
-              <div>
-                <p className="font-mono text-xs text-gray-400 dark:text-zinc-600 uppercase tracking-wider mb-2">
-                  Tech stack
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tag) => (
-                    <span
-                      key={tag}
-                      className="bg-gray-100 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded px-2 py-1 font-mono text-xs text-gray-700 dark:text-zinc-300"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            <div className="flex flex-col gap-2">
-              {project.live && (
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 bg-brand text-white rounded-lg px-4 py-2.5 text-sm font-semibold hover:opacity-90 transition-opacity"
-                >
-                  View Live <ExternalLink size={14} />
-                </a>
-              )}
+          <div className="flex flex-col gap-2 mt-auto pt-1">
+            {project.live && (
               <a
-                href={project.github}
+                href={project.live}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 border border-gray-200 dark:border-zinc-700 text-gray-700 dark:text-zinc-300 rounded-lg px-4 py-2.5 text-sm hover:border-gray-400 dark:hover:border-zinc-500 transition-colors"
+                className="flex items-center justify-center gap-2 bg-brand text-white rounded-lg px-4 py-2.5 text-sm font-semibold hover:opacity-90 transition-opacity"
               >
-                GitHub <Github size={14} />
+                View Live <ExternalLink size={14} />
               </a>
-            </div>
+            )}
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 border border-gray-200 dark:border-zinc-700 text-gray-700 dark:text-zinc-300 rounded-lg px-4 py-2.5 text-sm hover:border-gray-400 dark:hover:border-zinc-500 transition-colors"
+            >
+              GitHub <Github size={14} />
+            </a>
           </div>
-
         </div>
       </motion.div>
     </motion.div>
