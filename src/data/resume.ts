@@ -64,7 +64,7 @@ export const resume = {
     { value: '3+', label: 'Years exp.' },
     { value: '2', label: 'Companies' },
     { value: '10+', label: 'Technologies' },
-    { value: '4', label: 'Live projects' },
+    { value: '5', label: 'Live projects' },
   ],
   projects: [
     {
@@ -112,6 +112,22 @@ export const resume = {
         '/assets/gain-plan/gain-plan-list.png',
         '/assets/gain-plan/gain-plan-prep.png',
         '/assets/gain-plan/gain-plan-setup.png',
+      ],
+    },
+    {
+      name: 'Orbit Golf',
+      description: 'A 2D minigolf game played across procedurally generated solar systems — slingshot the ball between planets and use gravity wells to curve it into the cup. Custom canvas renderer and physics engine with a real forward-simulated aim line, seeded course generation across four difficulty tiers, and hazards like black holes, repulsors and ice, lava and gas surfaces. Serverless multiplayer over Supabase Realtime with deterministic host election, lobbies and live ghost balls, plus local career stats, 17 achievements and a cosmetics shop. Sound and music are synthesised at runtime, so there are no audio assets to ship.',
+      github: 'https://github.com/FilipGadzo1/orbit-golf',
+      live: 'https://orbit-golf-mu.vercel.app/',
+      language: 'TypeScript, Canvas',
+      tech: ['TypeScript', 'Canvas 2D', 'Vite', 'Supabase Realtime', 'Web Audio', 'Playwright'],
+      images: [
+        '/assets/orbit-golf/main-menu.png',
+        '/assets/orbit-golf/aiming.png',
+        '/assets/orbit-golf/ball-in-air.png',
+        '/assets/orbit-golf/hole-finished.png',
+        '/assets/orbit-golf/level.png',
+        '/assets/orbit-golf/career.png',
       ],
     },
   ],
