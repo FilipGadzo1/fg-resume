@@ -64,7 +64,7 @@ export const resume = {
     { value: '3+', label: 'Years exp.' },
     { value: '2', label: 'Companies' },
     { value: '10+', label: 'Technologies' },
-    { value: '3', label: 'Live projects' },
+    { value: '4', label: 'Live projects' },
   ],
   projects: [
     {
@@ -98,6 +98,20 @@ export const resume = {
         '/assets/budget-dashboard/Collab.png',
         '/assets/budget-dashboard/Settings.png',
         '/assets/budget-dashboard/Dashboard_light.png',
+      ],
+    },
+    {
+      name: 'GainPlan',
+      description: 'A local-first meal planner for bulking. Takes your body stats, activity level and goal, derives a BMR-based daily calorie and macro target, then generates a full week of meals from a recipe pool — with per-meal portion scaling, swapping and locking. Also builds a categorised grocery list priced against a real store with quantities rounded to package sizes, and a batch-cooking prep schedule that groups meals into cooking sessions. Bilingual (Swedish/English), no login and no backend — everything runs in the browser.',
+      github: 'https://github.com/FilipGadzo1/gainplan',
+      live: 'https://gainplan-taupe.vercel.app/',
+      language: 'React, TypeScript',
+      tech: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS', 'i18next', 'Vitest'],
+      images: [
+        '/assets/gain-plan/gain-plan-week.png',
+        '/assets/gain-plan/gain-plan-list.png',
+        '/assets/gain-plan/gain-plan-prep.png',
+        '/assets/gain-plan/gain-plan-setup.png',
       ],
     },
   ],
