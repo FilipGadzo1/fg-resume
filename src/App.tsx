@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react'
 import { ThemeProvider } from './context/ThemeContext'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
@@ -27,6 +28,7 @@ export default function App() {
         </main>
         <Footer />
       </div>
+      <Analytics />
     </ThemeProvider>
   )
 }
