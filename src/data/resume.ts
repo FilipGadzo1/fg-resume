@@ -17,7 +17,7 @@ export const resume = {
   bio: 'Full-stack developer with hands-on experience in React, Vue 3, and TypeScript, building production applications for Apollo Global Management. Focused on maintainable code, real usability, and reliable delivery in complex financial systems.',
   contact: {
     email: 'filip.gadzo123@gmail.com',
-    phone: '+385 99 199 1159',
+    phone: '+46 73 755 84 54',
     location: 'Uppsala, Sweden',
     linkedin: 'https://linkedin.com/in/filip-gadzo/',
     linkedinHandle: 'filip-gadzo',
