@@ -72,7 +72,7 @@ export default function Nav() {
           <a
             href="/Filip_Gadzo_CV.pdf"
             download
-            className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-zinc-400 dark:border-white/10 text-xs text-zinc-700 dark:text-zinc-400 hover:text-zinc-900 hover:border-zinc-600 hover:bg-zinc-200 dark:hover:text-white dark:hover:border-brand/40 font-mono transition-all"
+            className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-zinc-400 dark:border-white/10 text-xs text-zinc-700 dark:text-zinc-400 hover:text-zinc-900 hover:border-zinc-600 hover:bg-zinc-200 dark:hover:bg-white/5 dark:hover:text-white dark:hover:border-brand/40 font-mono transition-all"
           >
             <Download size={13} />
             CV
@@ -88,7 +88,7 @@ export default function Nav() {
           </a>
           <ThemeToggle />
           <a
-            href={`mailto:${resume.contact.email}`}
+            href="#contact"
             className="hidden md:inline-flex items-center px-4 py-2 rounded-lg bg-zinc-900 dark:bg-white/10 text-sm text-white dark:text-zinc-300 hover:bg-brand dark:hover:bg-brand dark:hover:text-white font-medium transition-all"
           >
             Hire me
