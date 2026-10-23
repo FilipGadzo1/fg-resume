@@ -26,6 +26,16 @@ export default function Contact() {
     setTimeout(() => setCopiedLabel(null), 2000)
   }
 
+  // mailto: silently does nothing when no mail client is registered. If the
+  // page keeps focus after the click, assume that and copy the address instead.
+  const handleMailto = () => {
+    setTimeout(() => {
+      if (document.hasFocus() && document.visibilityState === 'visible') {
+        handleCopy('Email', resume.contact.email)
+      }
+    }, 700)
+  }
+
   return (
     <Section id="contact">
       <div ref={ref}>
@@ -49,6 +59,7 @@ export default function Contact() {
                   {href ? (
                     <a
                       href={href}
+                      onClick={label === 'Email' ? handleMailto : undefined}
                       target={href.startsWith('http') ? '_blank' : undefined}
                       rel="noopener noreferrer"
                       className="text-gray-900 dark:text-zinc-300 hover:text-gray-900 dark:hover:text-white text-sm font-medium transition-colors flex items-center gap-1 group"
@@ -87,11 +98,17 @@ export default function Contact() {
             </p>
             <a
               href={`mailto:${resume.contact.email}`}
+              onClick={handleMailto}
               className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg bg-brand hover:bg-brand-light text-white font-semibold text-sm transition-colors"
             >
               <Mail size={15} />
               {resume.contact.email}
             </a>
+            {copiedLabel === 'Email' && (
+              <p className="mt-3 text-xs text-green-500 font-mono">
+                No mail app found — email address copied to clipboard.
+              </p>
+            )}
           </motion.div>
         </div>
       </div>
