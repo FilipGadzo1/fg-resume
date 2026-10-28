@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { Github, ExternalLink } from 'lucide-react'
+import { Badge, Button, Card, CardContent, CardFooter, CardHeader, CardTitle, buttonVariants, cn } from '@tessera/ui'
 import { Section, SectionHeader } from './Section'
 import { resume } from '../data/resume'
 import type { Project } from '../data/resume'
@@ -12,7 +13,7 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
   return (
-    <Section id="projects" className="bg-gray-100 dark:bg-bg-surface/40">
+    <Section id="projects" className="bg-muted/40">
       <SectionHeader number="05" title="Projects" subtitle="Personal projects built outside of work." />
       <div ref={ref} className="grid md:grid-cols-2 gap-5">
         {resume.projects.map((project, i) => (
@@ -21,74 +22,88 @@ export default function Projects() {
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="group card-clean rounded-xl p-6 flex flex-col gap-4"
+            className="flex"
           >
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h3 className="text-gray-900 dark:text-white font-bold text-lg leading-tight mb-1">
-                  {project.name}
-                </h3>
-                <span className="font-mono text-xs text-gray-600 dark:text-zinc-600 uppercase tracking-wider">
-                  {project.language}
-                </span>
-              </div>
-              <div className="flex items-center gap-3 flex-shrink-0">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-zinc-600 hover:text-gray-900 dark:hover:text-white transition-colors"
-                  aria-label="GitHub repository"
-                >
-                  <Github size={17} />
-                </a>
-                {project.live && (
+            <Card className="w-full gap-4">
+              <CardHeader className="flex-row items-start justify-between gap-4">
+                <div className="space-y-1.5">
+                  <CardTitle role="heading" aria-level={3} className="text-lg font-bold leading-tight">
+                    {project.name}
+                  </CardTitle>
+                  <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
+                    {project.language}
+                  </span>
+                </div>
+                <div className="flex items-center gap-1 flex-shrink-0">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub repository"
+                    className={buttonVariants({ variant: 'ghost', color: 'neutral', size: 'icon-sm' })}
+                  >
+                    <Github />
+                  </a>
+                  {project.live && (
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Live demo"
+                      className={buttonVariants({ variant: 'ghost', color: 'neutral', size: 'icon-sm' })}
+                    >
+                      <ExternalLink />
+                    </a>
+                  )}
+                </div>
+              </CardHeader>
+
+              <CardContent className="flex-1 space-y-4">
+                <p className="text-muted-foreground text-sm leading-relaxed">{project.description}</p>
+                {project.tech && (
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.tech.map((tag) => (
+                      <Badge key={tag} size="sm" className="font-mono">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+
+              <CardFooter className="justify-between gap-2">
+                {project.live ? (
                   <a
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-600 dark:text-zinc-600 hover:text-brand transition-colors"
-                    aria-label="Live demo"
+                    className={cn(buttonVariants({ variant: 'link', color: 'primary', size: 'sm' }), 'font-mono px-0')}
                   >
-                    <ExternalLink size={17} />
+                    View live <ExternalLink />
+                  </a>
+                ) : (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn(buttonVariants({ variant: 'link', color: 'primary', size: 'sm' }), 'font-mono px-0')}
+                  >
+                    View on GitHub <Github />
                   </a>
                 )}
-              </div>
-            </div>
-
-            <p className="text-gray-700 dark:text-zinc-500 text-sm leading-relaxed flex-1">
-              {project.description}
-            </p>
-
-            <div className="flex items-center justify-between gap-2">
-              {project.live ? (
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-brand text-xs font-mono hover:underline"
-                >
-                  View live <ExternalLink size={11} />
-                </a>
-              ) : (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-brand text-xs font-mono hover:underline"
-                >
-                  View on GitHub <Github size={11} />
-                </a>
-              )}
-              {project.images && project.images.length > 0 && (
-                <button
-                  onClick={() => setSelectedProject(project)}
-                  className="inline-flex items-center gap-1 text-xs font-mono text-gray-500 dark:text-zinc-500 border border-gray-200 dark:border-zinc-700 rounded-md px-2.5 py-1 hover:border-gray-400 dark:hover:border-zinc-500 hover:text-gray-800 dark:hover:text-zinc-300 transition-colors"
-                >
-                  Details <span className="text-brand">→</span>
-                </button>
-              )}
-            </div>
+                {project.images && project.images.length > 0 && (
+                  <Button
+                    variant="outline"
+                    color="neutral"
+                    size="xs"
+                    className="font-mono"
+                    onClick={() => setSelectedProject(project)}
+                  >
+                    Details <span className="text-primary">→</span>
+                  </Button>
+                )}
+              </CardFooter>
+            </Card>
           </motion.div>
         ))}
 
@@ -99,29 +114,19 @@ export default function Projects() {
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="group card-clean rounded-xl p-6 flex flex-col items-center justify-center gap-3 text-center min-h-[140px]"
+          className="group flex"
         >
-          <Github size={24} className="text-gray-500 dark:text-zinc-600 group-hover:text-gray-800 dark:group-hover:text-white transition-colors" />
-          <div>
-            <p className="text-gray-700 dark:text-zinc-400 text-sm font-medium group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
-              More on GitHub
-            </p>
-            <p className="text-gray-600 dark:text-zinc-600 font-mono text-xs mt-0.5">
-              @{resume.contact.githubHandle}
-            </p>
-          </div>
+          <Card className="w-full items-center justify-center gap-3 text-center min-h-[140px] transition-colors group-hover:border-primary/50">
+            <Github size={24} className="text-muted-foreground group-hover:text-foreground transition-colors" />
+            <div>
+              <p className="text-sm font-medium">More on GitHub</p>
+              <p className="text-muted-foreground font-mono text-xs mt-0.5">@{resume.contact.githubHandle}</p>
+            </div>
+          </Card>
         </motion.a>
       </div>
 
-      <AnimatePresence>
-        {selectedProject && (
-          <ProjectModal
-            key={selectedProject.name}
-            project={selectedProject}
-            onClose={() => setSelectedProject(null)}
-          />
-        )}
-      </AnimatePresence>
+      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </Section>
   )
 }

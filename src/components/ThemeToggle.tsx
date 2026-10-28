@@ -1,4 +1,5 @@
 import { Sun, Moon } from 'lucide-react'
+import { Button } from '@tessera/ui'
 import { useTheme } from '../context/ThemeContext'
 
 export default function ThemeToggle() {
@@ -24,12 +25,14 @@ export default function ThemeToggle() {
   }
 
   return (
-    <button
+    <Button
+      variant="ghost"
+      color="neutral"
+      size="icon-sm"
       onClick={handleClick}
       aria-label="Toggle theme"
-      className="text-gray-500 dark:text-zinc-500 hover:text-gray-900 dark:hover:text-white transition-colors"
     >
-      {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-    </button>
+      {theme === 'dark' ? <Sun /> : <Moon />}
+    </Button>
   )
 }
