@@ -69,7 +69,7 @@ export const resume = {
   projects: [
     {
       name: 'Skye',
-      description: 'A visually rich weather app with animated illustrated backgrounds that shift based on conditions and time of day. Features city search and geolocation, current conditions, 24-hour temperature charts, 7-day forecast, wind and humidity visualisations, atmosphere data, and a Health tab with air quality index, UV index, and moon phase. Includes an AI-generated "At a Glance" daily summary and a best-time-outside recommendation.',
+      description: 'A weather app with animated illustrated backgrounds that shift with conditions and time of day. City search and geolocation, 24-hour and 7-day forecasts, air quality, UV and moon phase, plus an AI-generated daily summary.',
       github: 'https://github.com/FilipGadzo1/weather-app',
       live: 'https://weather-app-ashy-omega-23.vercel.app/',
       language: 'React, TypeScript',
@@ -102,7 +102,7 @@ export const resume = {
     },
     {
       name: 'GainPlan',
-      description: 'A local-first meal planner for bulking. Takes your body stats, activity level and goal, derives a BMR-based daily calorie and macro target, then generates a full week of meals from a recipe pool — with per-meal portion scaling, swapping and locking. Also builds a categorised grocery list priced against a real store with quantities rounded to package sizes, and a batch-cooking prep schedule that groups meals into cooking sessions. Bilingual (Swedish/English), no login and no backend — everything runs in the browser.',
+      description: 'A local-first meal planner for bulking. Turns your body stats and goal into daily calorie and macro targets, generates a week of meals, and builds a priced grocery list and batch-cooking schedule. Bilingual (Swedish/English), no login or backend.',
       github: 'https://github.com/FilipGadzo1/gainplan',
       live: 'https://gainplan-taupe.vercel.app/',
       language: 'React, TypeScript',
@@ -116,7 +116,7 @@ export const resume = {
     },
     {
       name: 'Orbit Golf',
-      description: 'A 2D minigolf game played across procedurally generated solar systems — slingshot the ball between planets and use gravity wells to curve it into the cup. Custom canvas renderer and physics engine with a real forward-simulated aim line, seeded course generation across four difficulty tiers, and hazards like black holes, repulsors and ice, lava and gas surfaces. Serverless multiplayer over Supabase Realtime with deterministic host election, lobbies and live ghost balls, plus local career stats, 17 achievements and a cosmetics shop. Sound and music are synthesised at runtime, so there are no audio assets to ship.',
+      description: 'A 2D minigolf game on procedurally generated solar systems: slingshot the ball between planets and use gravity wells to reach the cup. Custom canvas physics engine, serverless multiplayer over Supabase Realtime, achievements and synthesised audio.',
       github: 'https://github.com/FilipGadzo1/orbit-golf',
       live: 'https://orbit-golf-mu.vercel.app/',
       language: 'TypeScript, Canvas',
@@ -132,7 +132,7 @@ export const resume = {
     },
     {
       name: 'Svenska',
-      description: 'A Swedish learning app built around real grammar and real reading rather than disconnected quiz sentences. Click any word in a text to get its English meaning and full inflection table (verb tenses, noun gender and definite/plural forms, adjective agreement) in a persistent side panel, powered by Claude with results cached so each word is only looked up once. Generate CEFR-levelled reading texts (A1–B2) on any topic, and drill saved words with an SM-2 spaced-repetition flashcard flow. Includes a textbook-style grammar section with 17 lessons (en/ett, definite forms, tenses, word order, slang, idioms, phrasal verbs and more). Google sign-in with per-user data and Row Level Security, a no-signup guest mode, light/dark theming, a responsive mobile layout and an optional glitter mode.',
+      description: 'A Swedish learning app built around real grammar and real reading. Click any word in a text for its meaning and full inflection table, generate CEFR-levelled reading texts with Claude, drill saved words with SM-2 spaced repetition, and work through 17 grammar lessons. Google sign-in with per-user data, plus a no-signup guest mode.',
       github: 'https://github.com/FilipGadzo1/swedish-learning-app',
       live: 'https://swedish-learning-app-theta.vercel.app/',
       language: 'Next.js, TypeScript, Supabase',
@@ -147,7 +147,7 @@ export const resume = {
     },
     {
       name: 'Tessera – Component Library',
-      description: 'A personal React component library that will serve as the UI foundation for all my future projects — every component a tile, every project a mosaic. Over 60 accessible, composable components (dialogs, menus, data tables, date and time pickers, combobox, command palette, sidebar, toast, tree, stepper and more) built on Base UI and styled with Tailwind CSS v4, cva and tailwind-merge. Themeable with four primary palettes, three surfaces and light/dark modes, RTL-aware through logical properties, and tested in real Chromium with Vitest, Playwright and axe-core. Documented with a Storybook page per component and published as @filipgadzo1/tessera on GitHub Packages; already used by the Svenska app.',
+      description: 'A personal React component library that will be the UI foundation for my future projects. Over 60 accessible, composable components built on Base UI and Tailwind CSS v4, with light/dark themes and swappable palettes. Tested with Vitest and axe, documented in Storybook, and published to GitHub Packages.',
       github: 'https://github.com/FilipGadzo1/tessera',
       live: 'https://tessera-virid.vercel.app/',
       language: 'React, TypeScript, Tailwind',
