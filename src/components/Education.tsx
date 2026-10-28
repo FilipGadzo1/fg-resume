@@ -18,14 +18,14 @@ export default function Education() {
         className="grid md:grid-cols-[200px_1fr] gap-6 md:gap-12"
       >
         <div className="md:text-right">
-          <p className="font-mono text-xs text-gray-600 dark:text-zinc-600 uppercase tracking-wider">
+          <p className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
             {resume.education.period}
           </p>
         </div>
         <div>
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{resume.education.school}</h3>
-          <p className="text-brand text-sm font-medium mb-1">{resume.education.degree}</p>
-          <p className="text-gray-600 dark:text-zinc-600 text-sm">{resume.education.location}</p>
+          <h3 className="text-xl font-bold mb-1">{resume.education.school}</h3>
+          <p className="text-primary text-sm font-medium mb-1">{resume.education.degree}</p>
+          <p className="text-muted-foreground text-sm">{resume.education.location}</p>
         </div>
       </motion.div>
     </Section>

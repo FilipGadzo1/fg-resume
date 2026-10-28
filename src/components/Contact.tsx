@@ -1,7 +1,8 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Mail, Phone, MapPin, Linkedin, Github, ArrowUpRight, Copy, Check } from 'lucide-react'
+import { Mail, Phone, MapPin, Linkedin, Github, ArrowUpRight, Copy } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
+import { Button, Separator, Tooltip, TooltipContent, TooltipTrigger, buttonVariants, useToast } from '@tessera/ui'
 import { Section, SectionHeader } from './Section'
 import { resume } from '../data/resume'
 
@@ -18,12 +19,15 @@ const contactConfig: ContactConfig[] = [
 export default function Contact() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
-  const [copiedLabel, setCopiedLabel] = useState<string | null>(null)
+  const toast = useToast()
 
-  const handleCopy = (label: string, rawValue: string) => {
+  const handleCopy = (label: string, rawValue: string, description?: string) => {
     navigator.clipboard.writeText(rawValue)
-    setCopiedLabel(label)
-    setTimeout(() => setCopiedLabel(null), 2000)
+    toast.add({
+      title: `${label} copied`,
+      description: description ?? rawValue,
+      type: 'success',
+    })
   }
 
   // mailto: silently does nothing when no mail client is registered. If the
@@ -31,7 +35,7 @@ export default function Contact() {
   const handleMailto = () => {
     setTimeout(() => {
       if (document.hasFocus() && document.visibilityState === 'visible') {
-        handleCopy('Email', resume.contact.email)
+        handleCopy('Email', resume.contact.email, 'No mail app found — address copied to clipboard.')
       }
     }, 700)
   }
@@ -42,47 +46,55 @@ export default function Contact() {
         <SectionHeader number="06" title="Get in touch" subtitle="Open to full-time roles and contract work. Response within a day." />
 
         <div className="grid md:grid-cols-2 gap-16 items-start">
-          <div className="divide-y divide-gray-200 dark:divide-white/5">
+          <div>
             {contactConfig.map(({ Icon, label, value, href }, i) => (
               <motion.div
                 key={label}
                 initial={{ opacity: 0, x: -16 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.45, delay: i * 0.07 }}
-                className="flex items-center gap-5 py-4"
               >
-                <span className="text-gray-600 dark:text-zinc-600 w-4 flex-shrink-0"><Icon size={16} /></span>
-                <span className="font-mono text-xs text-gray-600 dark:text-zinc-600 w-20 flex-shrink-0 uppercase tracking-wider">
-                  {label}
-                </span>
-                <span className="flex items-center gap-2">
-                  {href ? (
-                    <a
-                      href={href}
-                      onClick={label === 'Email' ? handleMailto : undefined}
-                      target={href.startsWith('http') ? '_blank' : undefined}
-                      rel="noopener noreferrer"
-                      className="text-gray-900 dark:text-zinc-300 hover:text-gray-900 dark:hover:text-white text-sm font-medium transition-colors flex items-center gap-1 group"
-                    >
-                      {value}
-                      <ArrowUpRight size={12} className="text-gray-400 dark:text-zinc-600 group-hover:text-brand transition-colors" />
-                    </a>
-                  ) : (
-                    <span className="text-gray-700 dark:text-zinc-400 text-sm">{value}</span>
-                  )}
-                  {(label === 'Email' || label === 'Phone') && (
-                    <button
-                      onClick={() => handleCopy(label, label === 'Phone' ? value.replace(/\s/g, '') : value)}
-                      title="Copy to clipboard"
-                      className="flex items-center"
-                    >
-                      {copiedLabel === label
-                        ? <Check size={12} className="text-green-500" />
-                        : <Copy size={12} className="text-gray-400 dark:text-zinc-600 hover:text-gray-700 dark:hover:text-zinc-400 cursor-pointer" />
-                      }
-                    </button>
-                  )}
-                </span>
+                {i > 0 && <Separator />}
+                <div className="flex items-center gap-5 py-4">
+                  <span className="text-muted-foreground w-4 flex-shrink-0"><Icon size={16} /></span>
+                  <span className="font-mono text-xs text-muted-foreground w-20 flex-shrink-0 uppercase tracking-wider">
+                    {label}
+                  </span>
+                  <span className="flex items-center gap-2">
+                    {href ? (
+                      <a
+                        href={href}
+                        onClick={label === 'Email' ? handleMailto : undefined}
+                        target={href.startsWith('http') ? '_blank' : undefined}
+                        rel="noopener noreferrer"
+                        className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1"
+                      >
+                        {value}
+                        <ArrowUpRight size={12} className="text-muted-foreground" />
+                      </a>
+                    ) : (
+                      <span className="text-muted-foreground text-sm">{value}</span>
+                    )}
+                    {(label === 'Email' || label === 'Phone') && (
+                      <Tooltip>
+                        <TooltipTrigger
+                          render={
+                            <Button
+                              variant="ghost"
+                              color="neutral"
+                              size="icon-xs"
+                              aria-label={`Copy ${label.toLowerCase()}`}
+                              onClick={() => handleCopy(label, label === 'Phone' ? value.replace(/\s/g, '') : value)}
+                            />
+                          }
+                        >
+                          <Copy />
+                        </TooltipTrigger>
+                        <TooltipContent>Copy to clipboard</TooltipContent>
+                      </Tooltip>
+                    )}
+                  </span>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -92,23 +104,18 @@ export default function Contact() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <p className="text-gray-700 dark:text-zinc-400 leading-relaxed mb-8 text-sm">
+            <p className="text-muted-foreground leading-relaxed mb-8 text-sm">
               Whether it's a full-time position, a contract project, or you just want to
               talk tech — my inbox is open.
             </p>
             <a
               href={`mailto:${resume.contact.email}`}
               onClick={handleMailto}
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg bg-brand hover:bg-brand-light text-white font-semibold text-sm transition-colors"
+              className={buttonVariants({ size: 'lg' })}
             >
-              <Mail size={15} />
+              <Mail />
               {resume.contact.email}
             </a>
-            {copiedLabel === 'Email' && (
-              <p className="mt-3 text-xs text-green-500 font-mono">
-                No mail app found — email address copied to clipboard.
-              </p>
-            )}
           </motion.div>
         </div>
       </div>

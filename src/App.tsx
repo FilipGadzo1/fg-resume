@@ -1,4 +1,5 @@
 import { Analytics } from '@vercel/analytics/react'
+import { Toaster } from '@tessera/ui'
 import { ThemeProvider } from './context/ThemeContext'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
@@ -14,21 +15,23 @@ import ScrollProgress from './components/ScrollProgress'
 export default function App() {
   return (
     <ThemeProvider>
-      <ScrollProgress />
-      <div className="min-h-screen text-gray-900 dark:text-white">
-        <Nav />
-        <main>
-          <Hero />
-          <About />
-          <Experience />
-          <Skills />
-          <Education />
-          <Projects />
-          <Contact />
-        </main>
-        <Footer />
-      </div>
-      <Analytics />
+      <Toaster>
+        <ScrollProgress />
+        <div className="min-h-screen bg-background text-foreground">
+          <Nav />
+          <main>
+            <Hero />
+            <About />
+            <Experience />
+            <Skills />
+            <Education />
+            <Projects />
+            <Contact />
+          </main>
+          <Footer />
+        </div>
+        <Analytics />
+      </Toaster>
     </ThemeProvider>
   )
 }
