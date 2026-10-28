@@ -64,7 +64,7 @@ export const resume = {
     { value: '3+', label: 'Years exp.' },
     { value: '2', label: 'Companies' },
     { value: '10+', label: 'Technologies' },
-    { value: '5', label: 'Live projects' },
+    { value: '6', label: 'Live projects' },
   ],
   projects: [
     {
@@ -144,6 +144,14 @@ export const resume = {
         '/assets/svenska/grammar.png',
         '/assets/svenska/glitter-mode.png',
       ],
+    },
+    {
+      name: 'Tessera – Component Library',
+      description: 'A personal React component library that will serve as the UI foundation for all my future projects — every component a tile, every project a mosaic. Over 60 accessible, composable components (dialogs, menus, data tables, date and time pickers, combobox, command palette, sidebar, toast, tree, stepper and more) built on Base UI and styled with Tailwind CSS v4, cva and tailwind-merge. Themeable with four primary palettes, three surfaces and light/dark modes, RTL-aware through logical properties, and tested in real Chromium with Vitest, Playwright and axe-core. Documented with a Storybook page per component and published as @filipgadzo1/tessera on GitHub Packages; already used by the Svenska app.',
+      github: 'https://github.com/FilipGadzo1/tessera',
+      live: 'https://tessera-virid.vercel.app/',
+      language: 'React, TypeScript, Tailwind',
+      tech: ['React 19', 'TypeScript', 'Base UI', 'Tailwind CSS v4', 'Storybook', 'Vitest', 'Playwright'],
     },
   ],
   education: {

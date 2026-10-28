@@ -71,7 +71,14 @@ export default function Projects() {
                   View live <ExternalLink size={11} />
                 </a>
               ) : (
-                <span />
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-brand text-xs font-mono hover:underline"
+                >
+                  View on GitHub <Github size={11} />
+                </a>
               )}
               {project.images && project.images.length > 0 && (
                 <button
