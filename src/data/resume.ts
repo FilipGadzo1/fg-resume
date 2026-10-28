@@ -163,7 +163,7 @@ export const resume = {
   languages: [
     { name: 'Croatian', level: 'Native', proficiency: 100 },
     { name: 'English', level: 'C1', proficiency: 85 },
+    { name: 'Swedish', level: 'Basic', proficiency: 25 },
     { name: 'German', level: 'Basic', proficiency: 25 },
-    { name: 'Spanish', level: 'Basic', proficiency: 20 },
   ],
 }
