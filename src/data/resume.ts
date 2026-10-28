@@ -130,6 +130,21 @@ export const resume = {
         '/assets/orbit-golf/career.png',
       ],
     },
+    {
+      name: 'Svenska',
+      description: 'A Swedish learning app built around real grammar and real reading rather than disconnected quiz sentences. Click any word in a text to get its English meaning and full inflection table (verb tenses, noun gender and definite/plural forms, adjective agreement) in a persistent side panel, powered by Claude with results cached so each word is only looked up once. Generate CEFR-levelled reading texts (A1–B2) on any topic, and drill saved words with an SM-2 spaced-repetition flashcard flow. Includes a textbook-style grammar section with 17 lessons (en/ett, definite forms, tenses, word order, slang, idioms, phrasal verbs and more). Google sign-in with per-user data and Row Level Security, a no-signup guest mode, light/dark theming, a responsive mobile layout and an optional glitter mode.',
+      github: 'https://github.com/FilipGadzo1/swedish-learning-app',
+      live: 'https://swedish-learning-app-theta.vercel.app/',
+      language: 'Next.js, TypeScript, Supabase',
+      tech: ['Next.js', 'React 19', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Claude API'],
+      images: [
+        '/assets/svenska/main-page.png',
+        '/assets/svenska/generated-text.png',
+        '/assets/svenska/vocab.png',
+        '/assets/svenska/grammar.png',
+        '/assets/svenska/glitter-mode.png',
+      ],
+    },
   ],
   education: {
     degree: 'BSc in Web & Mobile Computing',
