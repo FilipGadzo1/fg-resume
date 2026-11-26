@@ -31,6 +31,7 @@ export default function ThemeToggle() {
       size="icon-sm"
       onClick={handleClick}
       aria-label="Toggle theme"
+      data-shockwave="strong"
     >
       {theme === 'dark' ? <Sun /> : <Moon />}
     </Button>

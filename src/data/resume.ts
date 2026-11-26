@@ -13,8 +13,8 @@ export const resume = {
   nameFirst: 'Filip',
   nameLast: 'Gadžo',
   title: 'Full-Stack Developer',
-  tagline: '3+ years building enterprise fintech applications',
-  bio: 'Full-stack developer with hands-on experience in React, Vue 3, and TypeScript, building production applications for Apollo Global Management. Focused on maintainable code, real usability, and reliable delivery in complex financial systems.',
+  tagline: '4+ years building enterprise fintech applications',
+  bio: 'Full-stack developer with 4+ years of experience building fintech applications for Apollo Global Management through SpaceInch. Strong background in React, Vue 3, and TypeScript, with a focus on maintainable code, usability, and reliable delivery in complex financial systems.',
   contact: {
     email: 'filip.gadzo123@gmail.com',
     phone: '+46 73 755 84 54',
@@ -61,7 +61,7 @@ export const resume = {
     { category: 'AI Tooling', items: ['Claude', 'Codex', 'Cursor'] },
   ],
   stats: [
-    { value: '3+', label: 'Years exp.' },
+    { value: '4+', label: 'Years exp.' },
     { value: '2', label: 'Companies' },
     { value: '10+', label: 'Technologies' },
     { value: '6', label: 'Live projects' },

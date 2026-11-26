@@ -19,15 +19,16 @@ export default function About() {
           transition={{ duration: 0.55 }}
         >
           <p className="text-lg leading-relaxed mb-5">
-            I'm a full-stack developer based in Uppsala, Sweden. I've spent the last 3+ years
-            working on enterprise fintech software for Apollo Global Management — complex
-            trading and financial workflows that have to be both rock-solid and easy to use.
+            I'm a full-stack developer based in Uppsala, Sweden, with 4+ years of experience.
+            Through SpaceInch I build enterprise fintech software for Apollo Global Management —
+            complex trading and financial workflows that have to be both rock-solid and easy to use.
           </p>
           <p className="text-muted-foreground leading-relaxed">
             I care about the details: readable code, coherent UI behavior, and software
-            that stays maintainable as teams and requirements change. I integrate AI tools
-            like Claude and Cursor into my daily workflow, which means I ship faster without
-            cutting corners.
+            that stays maintainable as teams and requirements change. I'm experienced with
+            Redux, REST APIs, testing, and modern frontend tooling, with working knowledge of
+            Next.js and Python — and I use Claude, Codex, and Cursor daily to ship faster
+            without cutting corners.
           </p>
         </motion.div>
 
@@ -41,7 +42,7 @@ export default function About() {
             {[
               { label: 'Location', value: resume.contact.location },
               { label: 'Focus', value: 'Frontend & Full-Stack' },
-              { label: 'Experience', value: '3+ years' },
+              { label: 'Experience', value: '4+ years' },
             ].map(({ label, value }) => (
               <div key={label}>
                 <div className="flex gap-6 py-4">
