@@ -23,6 +23,7 @@ export default function Projects() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: i * 0.1 }}
             className="flex"
+            data-tile-glow
           >
             <Card className="w-full gap-4">
               <CardHeader className="flex-row items-start justify-between gap-4">

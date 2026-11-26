@@ -11,13 +11,16 @@ import Projects from './components/Projects'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import ScrollProgress from './components/ScrollProgress'
+import Backdrop from './components/Backdrop'
 
 export default function App() {
   return (
     <ThemeProvider>
       <Toaster>
         <ScrollProgress />
-        <div className="min-h-screen bg-background text-foreground">
+        {/* No background on this wrapper: the fixed 3D backdrop sits behind it (body paints the page color). */}
+        <div className="min-h-screen text-foreground">
+          <Backdrop />
           <Nav />
           <main>
             <Hero />

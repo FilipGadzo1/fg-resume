@@ -44,6 +44,13 @@
   }
 }
 
+/* Static fallback (and first-paint placeholder) for the 3D backdrop. */
+@utility backdrop-glow {
+  background:
+    radial-gradient(60% 50% at 75% 30%, color-mix(in oklab, var(--primary) 14%, transparent), transparent 70%),
+    radial-gradient(50% 40% at 15% 85%, color-mix(in oklab, var(--primary) 7%, transparent), transparent 70%);
+}
+
 @utility section-label {
   font-family: var(--font-mono);
   font-size: 0.7rem;
